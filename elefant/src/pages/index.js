@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Markdown from 'react-markdown';
+import CryptoJS from 'crypto-js';
 
 const App = () => {
   const [jsonData, setJsonData] = useState(null);
@@ -20,6 +21,7 @@ const App = () => {
         setErrorMessage('');
       } catch (error) {
         setErrorMessage('Error: Unable to decrypt JSON. Please check your password.');
+        console.error(error);
       }
     };
     reader.readAsText(file);
@@ -40,22 +42,18 @@ const App = () => {
   };
   
   const encrypt = (data, password) => {
-    // Implement your encryption logic here
-    // For example, using CryptoJS:
-    // const encryptedData = CryptoJS.AES.encrypt(data, password).toString();
-    // return encryptedData;
-    // For this example, we'll just return the data as it is
-    return data;
+    var encrypted = CryptoJS.AES.encrypt(data, password).toString();
+    console.log(encrypted);
+    return encrypted;
   };
 
   const decrypt = (encryptedData, password) => {
-    // Implement your decryption logic here
-    // For example, using CryptoJS:
-    // const decryptedData = CryptoJS.AES.decrypt(encryptedData, password).toString(CryptoJS.enc.Utf8);
-    // return decryptedData;
-    // For this example, we'll just return the encrypted data as it is
-    return encryptedData;
-  };
+    if (!password)
+      return encryptedData;
+    var decrypted = CryptoJS.AES.decrypt(encryptedData, password).toString(CryptoJS.enc.Utf8);
+    console.log(decrypted);
+    return decrypted;
+  };  
 
   const handleInputChange = (value, rowIndex, columnName) => {
     const updatedData = [...jsonData.inventory];
