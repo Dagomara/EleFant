@@ -1,0 +1,21 @@
+{
+  "inventory": 
+  [
+    {
+      "positive": true,
+      "object": "dad",
+      "cause": "",
+      "effect": "",
+      "result": "",
+      "myPart": ""
+    },
+    {
+      "positive": false,
+      "object": "mom",
+      "cause": "",
+      "effect": "",
+      "result": "",
+      "myPart": ""
+    }
+  ]
+}
